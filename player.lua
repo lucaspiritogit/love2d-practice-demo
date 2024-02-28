@@ -1,11 +1,15 @@
 Player = {}
 
+
 function Player:load()
+
   self.width = 100
+  PLAYER_DEFAULT_STARTING_POSITION_X = (love.graphics.getWidth() / 2) - (self.width / 2)
+  PLAYER_DEFAULT_STARTING_POSITION_Y = love.graphics.getHeight() - 100
   self.height = 20
   self.speed = 500
-  self.y = love.graphics.getHeight() - 100
-  self.x = (love.graphics.getWidth() / 2) - (self.width / 2)
+  self.y = PLAYER_DEFAULT_STARTING_POSITION_Y
+  self.x = PLAYER_DEFAULT_STARTING_POSITION_X
   self.points = 0
   self.health = 3
   self.image = ""
@@ -29,6 +33,6 @@ function Player:update(dt)
 end
 
 function Player:draw()
-  love.graphics.print(self.points, love.graphics.getHeight() / 2, love.graphics.getWidth() / 2, 0, nil)
+  love.graphics.print(self.points, 0, 0 , 0, nil)
   love.graphics.rectangle("fill", self.x, self.y, self.width, self.height)
 end

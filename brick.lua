@@ -1,4 +1,5 @@
 require("brickSpawner")
+
 Brick = {}
 
 function Brick:new(x, y, width, height, color, hp)
@@ -21,8 +22,10 @@ function Brick:collide(ball)
         if self.hp == 0 then
             return true
         else
+            ball.speed = ball.speed + 3.5
+
             local collisionAngle = math.atan((ball.y + ball.height / 2) - (self.y + self.height / 2),
-            (ball.x + ball.width / 2) - (self.x + self.width / 2))
+                (ball.x + ball.width / 2) - (self.x + self.width / 2))
             ball.xVel = ball.speed * math.cos(collisionAngle)
             ball.yVel = ball.speed * math.sin(collisionAngle)
         end
@@ -30,10 +33,8 @@ function Brick:collide(ball)
     return false
 end
 
-
-
 function Brick:load()
-    Bricks = BrickSpawner:spawnBricks(2, 3, 80, 30)
+    Bricks = BrickSpawner:spawnBricks(math.random(2, 5), math.random(2, 4), 200, 30)
 end
 
 function Brick:update(dt)
